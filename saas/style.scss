@@ -23,9 +23,11 @@ body {
     color: #fff;
     box-shadow: var(--bs);
 
-     form .form-box {
+    form .form-box {
         margin: 20px;
-        display: flex;
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: auto 2fr;
 
         label {
             text-transform: capitalize;
@@ -34,8 +36,6 @@ body {
         }
 
         input {
-            flex: 1;
-            margin-left: 20px;
             padding: 5px;
             border-radius: 5px;
             border: 0;
@@ -45,6 +45,11 @@ body {
 }
 
 @media (max-width: 900px) {
+    .container-1 {
+        form .form-box {
+            grid-template-columns: auto;
+        }
+    }
     .container-1 > form .form-box > label {
         display: none;
     }
@@ -59,30 +64,33 @@ body {
     max-width: 1200px;
     margin: 40px auto 0 auto;
     padding: 20px 50px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas: 'mainbar' 
+                        'sidebarone'
+                        'sidebartwo'
+    ;
 
     .sidebar-one {
-        flex-basis: 25%;
-        order: -1;
+        grid-area: sidebarone;
         text-align: justify;
     }
 
     .mainbar {
-        flex-basis: 40%;
-        order: 2;
+        grid-area: mainbar;
         text-align: justify;
     }
 
     .sidebar-two {
-        flex-basis: 25%;
-        order: 3;
+        grid-area: sidebartwo;
         text-align: justify;
     }
 }
 
 @media (min-width: 900px) {
     .column-layout {
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-areas: 'sidebarone mainbar sidebartwo';
     }
 }
 
@@ -90,6 +98,9 @@ body {
     max-width: 1200px;
     margin: 40px auto 0 auto;
     padding: 20px 50px;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(1, 1fr);
 
     .card {
         border-radius: 10px;
@@ -116,29 +127,30 @@ body {
 
 @media (min-width:900px) {
     .cards {
-        display: flex;
-        justify-content: space-between;
-        align-items: stretch;
-
-        .card {
-            width: 30%;
-        }
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
 
         .card + .card {
             margin: 0;
+        }
+
+        .card:first-child {
+            align-self: start;
         }
     }
 }
 
 .numbers {
-    display: flex;
+    display: grid;
     max-width: 1200px;
     margin: 40px auto;
     justify-content: space-around;
-    flex-wrap: wrap;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     background: #303030;
     border-radius: 10px;
     box-shadow: var(--bs);
+    padding: 20px 50px;
 
     .box {
         border-radius: 10px;
@@ -146,7 +158,6 @@ body {
         width: 100px;
         color: #fff;
         background: tomato;
-        margin: 20px;
 
         p {
             text-align: center;
@@ -164,39 +175,35 @@ body {
     background-color: powderblue;
     height: 300px;
     margin: 0 auto 40px auto;
-    display: flex;
+    display: grid;
     box-shadow: var(--bs);
-
-    h1 {
-        margin: auto;
-    }
+    justify-content: center;
+    align-content: center;
 }
 
 .column-row {
     max-width: 1200px;
     margin: 0 auto 20px auto;
     padding: 20px;
+    display:  grid;
+    grid-template-columns: repeat(1, 1fr);
 
     .column {
         background: red;
         padding: 20px 30px;
-        flex: 1;
     }
 
     .row {
         background: lemonchiffon;
-        flex: 1;
 
         .div-a {
             background: lightcoral;
             padding: 20px;
-            flex: 1;
         }
 
         .div-b {
             background: lightgreen;
             padding: 20px;
-            flex: 1;
         }
     }
 
@@ -204,11 +211,12 @@ body {
 
 @media (min-width: 900px) {
     .column-row {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
 
         .row {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
         }
     }
 }
